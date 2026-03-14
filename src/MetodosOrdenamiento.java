@@ -6,7 +6,7 @@ public class MetodosOrdenamiento {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Cantidad de elementos: ");
+        System.out.print("Cantidad de elementos a ordenar: ");
         int n = sc.nextInt();
 
         int[] arreglo = new int[n];
@@ -17,7 +17,7 @@ public class MetodosOrdenamiento {
             arreglo[i] = sc.nextInt();
         }
 
-        System.out.println("\nSeleccione metodo:");
+        System.out.println("\nSeleccione metodo de ordenamiento:");
         System.out.println("1 Selection Sort");
         System.out.println("2 Bubble Sort");
         System.out.println("3 Insertion Sort");
