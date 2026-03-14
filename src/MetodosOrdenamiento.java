@@ -6,80 +6,94 @@ public class MetodosOrdenamiento {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Cantidad de elementos a ordenar: ");
+        System.out.print("Cantidad de elementos: ");
         int n = sc.nextInt();
 
-        int[] arreglo = new int[n];
+        int[] original = new int[n];
 
         System.out.println("Ingrese los numeros:");
 
         for (int i = 0; i < n; i++) {
-            arreglo[i] = sc.nextInt();
+            original[i] = sc.nextInt();
         }
 
-        System.out.println("\nSeleccione metodo de ordenamiento:");
-        System.out.println("1 Selection Sort");
-        System.out.println("2 Bubble Sort");
-        System.out.println("3 Insertion Sort");
-        System.out.println("4 Merge Sort");
-        System.out.println("5 Quick Sort");
-        System.out.println("6 Heap Sort");
-        System.out.println("7 Counting Sort");
-        System.out.println("8 Radix Sort");
-        System.out.println("9 Bucket Sort");
+        char continuar;
 
-        int op = sc.nextInt();
+        do {
 
-        switch (op) {
+            int[] arreglo = original.clone();
 
-            case 1:
-                selectionSort(arreglo);
-                break;
+            System.out.println("\nSeleccione metodo de ordenamiento:");
+            System.out.println("1. Selection Sort");
+            System.out.println("2. Bubble Sort");
+            System.out.println("3. Insertion Sort");
+            System.out.println("4. Merge Sort");
+            System.out.println("5. Quick Sort");
+            System.out.println("6. Heap Sort");
+            System.out.println("7. Counting Sort");
+            System.out.println("8. Radix Sort");
+            System.out.println("9. Bucket Sort");
 
-            case 2:
-                bubbleSort(arreglo);
-                break;
+            int op = sc.nextInt();
 
-            case 3:
-                insertionSort(arreglo);
-                break;
+            switch (op) {
 
-            case 4:
-                mergeSort(arreglo, 0, arreglo.length - 1);
-                break;
+                case 1:
+                    selectionSort(arreglo);
+                    break;
 
-            case 5:
-                quickSort(arreglo, 0, arreglo.length - 1);
-                break;
+                case 2:
+                    bubbleSort(arreglo);
+                    break;
 
-            case 6:
-                heapSort(arreglo);
-                break;
+                case 3:
+                    insertionSort(arreglo);
+                    break;
 
-            case 7:
-                countingSort(arreglo);
-                break;
+                case 4:
+                    mergeSort(arreglo, 0, arreglo.length - 1);
+                    break;
 
-            case 8:
-                radixSort(arreglo);
-                break;
+                case 5:
+                    quickSort(arreglo, 0, arreglo.length - 1);
+                    break;
 
-            case 9:
-                bucketSort(arreglo);
-                break;
+                case 6:
+                    heapSort(arreglo);
+                    break;
 
-            default:
-                System.out.println("Opcion invalida");
-        }
+                case 7:
+                    countingSort(arreglo);
+                    break;
 
-        System.out.println("\nArreglo ordenado:");
-        imprimir(arreglo);
+                case 8:
+                    radixSort(arreglo);
+                    break;
+
+                case 9:
+                    bucketSort(arreglo);
+                    break;
+
+                default:
+                    System.out.println("Opcion invalida");
+            }
+
+            System.out.println("\nArreglo ordenado:");
+            imprimir(arreglo);
+
+            System.out.println("\nDesea ordenar con otro metodo? (s/n)");
+            continuar = sc.next().charAt(0);
+
+        } while (continuar == 's' || continuar == 'S');
+
+        System.out.println("Programa finalizado.");
     }
 
+    // Metodo para imprimir el arreglo
     public static void imprimir(int[] arr) {
 
-        for (int n : arr) {
-            System.out.print(n + " ");
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
 
         System.out.println();
@@ -135,7 +149,6 @@ public class MetodosOrdenamiento {
 
                 arr[j + 1] = arr[j];
                 j--;
-
             }
 
             arr[j + 1] = key;
@@ -174,12 +187,10 @@ public class MetodosOrdenamiento {
 
         while (i < n1 && j < n2) {
 
-            if (L[i] <= R[j]) {
+            if (L[i] <= R[j])
                 arr[k++] = L[i++];
-            } else {
+            else
                 arr[k++] = R[j++];
-            }
-
         }
 
         while (i < n1)
@@ -215,7 +226,6 @@ public class MetodosOrdenamiento {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
-
             }
         }
 
@@ -270,7 +280,6 @@ public class MetodosOrdenamiento {
     public static void countingSort(int[] arr) {
 
         int max = Arrays.stream(arr).max().getAsInt();
-
         int[] count = new int[max + 1];
 
         for (int num : arr)
@@ -284,7 +293,6 @@ public class MetodosOrdenamiento {
 
                 arr[index++] = i;
                 count[i]--;
-
             }
         }
     }
@@ -315,7 +323,6 @@ public class MetodosOrdenamiento {
 
             output[count[(arr[i] / exp) % 10] - 1] = arr[i];
             count[(arr[i] / exp) % 10]--;
-
         }
 
         for (int i = 0; i < n; i++)
@@ -338,7 +345,6 @@ public class MetodosOrdenamiento {
 
             int index = (num * bucketCount) / (max + 1);
             buckets.get(index).add(num);
-
         }
 
         int k = 0;
@@ -347,9 +353,8 @@ public class MetodosOrdenamiento {
 
             Collections.sort(bucket);
 
-            for (int num : bucket) {
+            for (int num : bucket)
                 arr[k++] = num;
-            }
         }
     }
 }
