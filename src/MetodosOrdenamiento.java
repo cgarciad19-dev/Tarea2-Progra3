@@ -21,7 +21,11 @@ public class MetodosOrdenamiento {
 
         do {
 
-            int[] arreglo = original.clone();
+            // COPIA DEL ARREGLO ORIGINAL
+            int[] arreglo = new int[original.length];
+            for (int i = 0; i < original.length; i++) {
+                arreglo[i] = original[i];
+            }
 
             System.out.println("\nSeleccione metodo de ordenamiento:");
             System.out.println("1. Selection Sort");
@@ -89,7 +93,7 @@ public class MetodosOrdenamiento {
         System.out.println("Programa finalizado.");
     }
 
-    // Metodo para imprimir el arreglo
+    // Imprimir arreglo
     public static void imprimir(int[] arr) {
 
         for (int num : arr) {
